@@ -1,0 +1,39 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 300px;
+  max-height: 200px;
+  border-radius: 6px;
+  border: 1px solid rgb(133, 131, 131);
+  margin-bottom: 20px;
+}
+
+.label {
+  margin: 15px;
+}
+
+.text {
+  margin-right: 10px;
+}
+
+.text__name {
+  margin-right: 25px;
+}
+
+.btn {
+  margin: auto;
+  margin-bottom: 15px;
+  width: 120px;
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: bisque;
+}
+
+.btn:hover {
+  background-color: cornflowerblue;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16);
+}
