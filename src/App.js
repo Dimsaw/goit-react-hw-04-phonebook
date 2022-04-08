@@ -58,12 +58,7 @@ export default function App() {
     }));
   };
 
-  const emptyContacts = contacts.length;
-
-  // render() {
-  //   const { filter } = this.state;
-  //   const visibleContact = this.getVisibleContacts();
-  //   const emptyContacts = this.state.contacts.length;
+  const filterContacts = getVisibleContacts();
 
   return (
     <>
@@ -74,14 +69,11 @@ export default function App() {
         <div>
           <h3 className={s.contacts}>Contacts</h3>
           <Filter value={filter} onChange={changeFilter} />
-          {emptyContacts > 0 ? (
-            <ContactsList
-              contacts={getVisibleContacts}
-              onDeleteContact={deleteContact}
-            />
-          ) : (
-            <h4>Phonebook is empty</h4>
-          )}
+
+          <ContactsList
+            contacts={filterContacts}
+            onDeleteContact={deleteContact}
+          />
         </div>
       </Container>
     </>
