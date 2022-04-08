@@ -4,6 +4,7 @@ import ContactsList from './componets/ContactsList';
 import ContactForm from './componets/ContactForm';
 import Filter from './componets/Filter';
 import Container from './componets/Container';
+import useLocalStorage from './hooks/useLocalStorage';
 import s from './App.module.css';
 import shortid from 'shortid';
 
@@ -18,41 +19,11 @@ Notiflix.Notify.init({
 });
 
 export default function App() {
-  // state = {
-  //   contacts: [
-  //     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-  //     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-  //     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-  //     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  //   ],
-  //   filter: '',
-
-  // };
-
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useLocalStorage('contacts');
   const [filter, setFilter] = useState('');
 
-  // componentDidMount() {
-  //   const contacts = localStorage.getItem('contacts');
-  //   const parsedContacts = JSON.parse(contacts);
-
-  //   if (parsedContacts) {
-  //     this.setState({ contacts: parsedContacts });
-  //   }
-  // }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   const nextContacts = this.state.contacts;
-  //   const prevContacts = prevState.contacts;
-
-  //   if (nextContacts !== prevContacts) {
-  //     console.log('add');
-  //     localStorage.setItem('contacts', JSON.stringify(nextContacts));
-  //   }
-  // }
-
   const formSubmitHandler = ({ name, number }) => {
-    const newContact = {
+    const contact = {
       id: shortid.generate(),
       name,
       number,
@@ -66,7 +37,7 @@ export default function App() {
       return Notiflix.Notify.failure(`${name} is alredy in contacts`);
     }
 
-    setContacts([newContact, ...setContacts]);
+    setContacts([contact, ...contacts]);
   };
 
   const changeFilter = e => {
